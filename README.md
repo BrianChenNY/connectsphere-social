@@ -45,5 +45,5 @@
 ### Getting Started
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/connectsphere-social.git
+   git clone https://github.com/BrianChenNY/connectsphere-social.git
    cd connectsphere-social
