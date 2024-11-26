@@ -30,14 +30,14 @@
         font-size: 100px;
         line-height: 100px;
       }
-
+      
       p {
       }
 
       span {
         font-size: 14px;
       }
-
+      
       button {
         width: 50%;
         padding: 10px;
@@ -58,20 +58,20 @@
       justify-content: center;
 
       h1 {
-        color: #555;
+      color: #555;
       }
-
+      
       form {
         display: flex;
         flex-direction: column;
         gap: 30px;
-
+        
         input {
-          border: none;
-          border-bottom: 1px solid lightgray;
-          padding: 20px 10px;
+        border: none;
+        border-bottom: 1px solid lightgray;
+        padding: 20px 10px;
         }
-
+        
         button {
           width: 50%;
           padding: 10px;
