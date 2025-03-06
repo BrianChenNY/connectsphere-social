@@ -1,6 +1,6 @@
 import { db } from "../connect.js";
 import bcrypt from "bcryptjs"; //install "yarn add bcryptjs, generate hash password"
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken"; //for security
 
 export const register = (req, res) => {
   //check user if exists
@@ -18,7 +18,7 @@ export const register = (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
     const q =
-      "INSERT INTO users ('username','email','password','name') VALUE (?)";
+      "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
 
     const values = [
       req.body.username,
@@ -44,7 +44,7 @@ export const login = (req, res) => {
     const checkPassword = bcrypt.compareSync(
       req.body.password,
       data[0].password
-    );
+    ); // return only 1 user
 
     if (!checkPassword)
       return res.status(400).json("Wrong password or username!");
@@ -66,7 +66,7 @@ export const logout = (req, res) => {
   res
     .clearCookie("accessToken", {
       secure: true,
-      sameSite: "none",
+      sameSite: "none", // 8800 and 3000
     })
     .status(200)
     .json("User has been logged out.");

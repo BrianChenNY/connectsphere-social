@@ -1,10 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.scss";
-import { useState } from "react";
 import axios from "axios";
 
 const Register = () => {
-  //useState
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -33,11 +32,10 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
+          <h1>Connect Sphere.</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+            Connect together. Make the world better. A nice place to hang out
+            with your friends, Let's try.
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
