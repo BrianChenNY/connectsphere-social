@@ -19,6 +19,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
+  console.log("Current User in App.js:", currentUser); // Debug log
 
   const { darkMode } = useContext(DarkModeContext);
 
@@ -42,6 +43,7 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
+    console.log("Checking Protected Route, currentUser:", currentUser);
     if (!currentUser) {
       return <Navigate to="/login" />;
     }
