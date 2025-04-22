@@ -1,0 +1,85 @@
+// 1. 首先定义主题变量
+$themes: (
+  light: (
+    textColor: #000,
+    bg: white,
+    logo: darkblue,
+    bgSoft: #f6f3f3,
+    textColorSoft: #555,
+    border: lightgray,
+  ),
+  dark: (
+    textColor: whitesmoke,
+    bg: #222,
+    logo: white,
+    bgSoft: #333,
+    textColorSoft: lightgray,
+    border: #444,
+  ),
+);
+
+// 2. 定义 mixins 和函数
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 960px) {
+    @content;
+  }
+}
+
+// 3. 根级别的主题初始化
+:root {
+  color-scheme: light dark;
+}
+
+// 4. 使用主题样式
+body {
+  @include themify($themes) {
+    background-color: themed("bg");
+    color: themed("textColor");
+  }
+  margin: 0;
+  min-height: 100vh;
+}
+
+// 5. 添加过渡效果
+body,
+.container,
+.left,
+.right,
+.center,
+.posts,
+.post,
+.comments,
+.stories,
+.rightBar,
+.navbar {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

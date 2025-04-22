@@ -1,49 +1,100 @@
-# ConnectSphere
+## Usage Instructions
 
-**ConnectSphere** is a modern social networking website where users can share their daily life through photos and words, engage with others by commenting on their posts, and build meaningful connections. It combines the functionality of Facebook with the sleek and visually appealing design of Instagram.
+Please avoid uploading large images. The server has limited resources—your understanding is appreciated.
 
-## Features
+### Environment Requirements
 
-### Core Features
-- **User Profiles**: Create and customize your profile with a profile picture, bio, and personal information.
-- **Posting**: Share moments by posting photos and adding captions to express yourself.
-- **News Feed**: View and engage with posts from people you follow in a dynamic, Instagram-like feed.
-- **Comments**: Add comments on posts to connect with others and share your thoughts.
-- **Likes**: Show appreciation for posts with a simple like feature.
-- **Follow System**: Follow other users to see their updates in your feed.
+Please avoid uploading large images. The server has limited resources—your understanding is appreciated.
 
-### Future Enhancements
-- **Direct Messaging**: Send private messages to other users.
-- **Hashtags and Explore**: Use hashtags and discover trending posts or popular users.
-- **Notifications**: Get updates about comments, likes, and followers.
-- **Stories**: Post temporary stories for short-lived moments.
-- **Search**: Search for users and hashtags.
+- Node.js
+- MySQL
 
-## Project Setup
+### Database Setup
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) and npm/yarn
-- [Python](https://www.python.org/) (for the backend)
-- A virtual environment tool like `venv` or `conda`
-- [Git](https://git-scm.com/)
+Create a database named `social_media` in your MySQL server (either local or remote)
 
-### Technologies
-**Frontend:**
-- React.js (with CSS for styling)
-- Redux for state management
+Import the `social_media.sql` file (found in the root directory) into the `social_media` database.
 
-**Backend:**
-- Python Flask
-- SQLAlchemy for database management
+Open /service/connect.js and update the database configuration (host, username, password, etc.) to match your MySQL setup.
 
-**Database:**
-- PostgreSQL
+Incorrect configuration may result in database connection failures.
 
-**Deployment:**
-- Hosted on Render (or any cloud platform of your choice)
+### Install Dependencies
 
-### Getting Started
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/BrianChenNY/connectsphere-social.git
-   cd connectsphere-social
+Since both the frontend and backend rely on Node.js, install dependencies for both:
+
+cd client, then enter：npm i
+
+cd ../service，then enter：npm i
+
+> If prompted to upgrade your Node.js version, please do so accordingly.
+
+### Run Locally
+
+After setting up everything above, run the project:
+
+cd client，then enter：npm run start
+
+cd service，then enter：npm run dev
+
+############################################################
+
+（If you do not intend to deploy the project online, you may skip the following section.）
+
+############################################################
+
+### Modify Image Storage Path
+
+In /service/index.js, update the image upload destination:
+
+From：
+
+cb(null, "../client/public/upload");
+// cb(null, "./public/upload");
+
+To：
+
+// cb(null, "../client/public/upload");
+cb(null, "./public/upload");
+
+### Update API Endpoint URLs for Production
+
+When deploying online, you must manually update the API URLs from localhost to your domain.
+
+#### /client/.env
+
+find：/client/.env document，probably like this：
+
+```text
+
+http://localhost:8800/api
+
+```
+
+change it to：http://your-domain/api
+
+#### /client/src/axios.js
+
+change："http://localhost:8800/api"
+
+to："http://your-domain/api"
+
+#### /client/src/setupProxy.js
+
+change："http://localhost:8800"
+
+to："http://your-domain"
+
+#### /client/src/pages/register/Register.jsx
+
+change："http://localhost:8800/api/auth/register"
+
+to："http://你的域名/api/auth/register"
+
+### Deploy Online
+
+cd client，then：npm run build
+
+Copy the contents of the build folder into /service/public
+
+Upload the entire `service` folder to your server，run the backend：npm run start

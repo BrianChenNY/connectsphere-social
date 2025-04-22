@@ -1,0 +1,137 @@
+@import "../../style.scss";
+
+.rightBar {
+  width: 400px;
+  flex-shrink: 0;
+
+  @include themify($themes) {
+    // flex: 3;
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    background-color: themed("bgSoft");
+
+    @include mobile{
+      display: none;
+    }
+    @include tablet{
+      display: none;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container {
+      padding: 20px;
+
+      .item {
+        -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: themed("bg");
+
+        span {
+          color: themed("textColorSoft");
+        }
+
+        .loading, .no-users {
+          padding: 20px 0;
+          text-align: center;
+          color: themed("textColorSoft");
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 20px 0px;
+
+          .userInfo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+
+            .online {
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              background-color: limegreen;
+              position: absolute;
+              top: 0;
+              left: 30px;
+            }
+
+            span {
+              font-weight: 500;
+              color: themed("textColor");
+              &:hover {
+                color: themed("textColorSoft");
+              }
+            }
+
+            p {
+              color: themed("textColorSoft");
+            }
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+              border: none;
+              padding: 5px 10px;
+              color: white;
+              cursor: pointer;
+              border-radius: 3px;
+              min-width: 60px;
+              transition: all 0.3s ease;
+
+              &:first-child {
+                background-color: #5271ff;
+                &:hover:not(:disabled) {
+                  background-color: #4161e6;
+                }
+                &:disabled {
+                  background-color: #a8b4ff;
+                  cursor: not-allowed;
+                }
+              }
+
+              &:last-child {
+                background-color: #f0544f;
+                &:hover {
+                  background-color: #e64842;
+                }
+              }
+
+              &.unfollow {
+                background-color: #f0544f;
+                &:hover:not(:disabled) {
+                  background-color: #e64842;
+                }
+                &:disabled {
+                  background-color: #ffa8a5;
+                  cursor: not-allowed;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

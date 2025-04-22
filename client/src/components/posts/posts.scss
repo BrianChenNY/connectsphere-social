@@ -1,0 +1,12 @@
+@import "../../style.scss";
+
+.posts {
+  @include themify($themes) {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color: themed("bgSoft");
+    padding: 20px;
+    border-radius: 10px;
+  }
+}

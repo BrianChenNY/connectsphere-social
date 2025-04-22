@@ -1,0 +1,202 @@
+@import "../../style.scss";
+
+.post {
+  @include themify($themes) {
+    -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+    border-radius: 20px;
+    background-color: themed("bg");
+    color: themed("textColor");
+
+    .container {
+      padding: 20px;
+
+      .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        .userInfo {
+          display: flex;
+          gap: 20px;
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .details {
+            display: flex;
+            flex-direction: column;
+
+            .name {
+              font-weight: 500;
+            }
+
+            .date {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .menu {
+          position: absolute;
+          top: 30px;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          background-color: themed("bg");
+          border-radius: 5px;
+          -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+          -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+          box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+          padding: 5px;
+          z-index: 999;
+
+          button {
+            border: none;
+            background-color: transparent;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: themed("textColor");
+            font-size: 14px;
+
+            &:hover {
+              background-color: themed("bgSoft");
+            }
+          }
+        }
+      }
+
+      .content {
+        margin: 20px 0px;
+
+        .editContent {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid themed("border");
+            background-color: transparent;
+            color: themed("textColor");
+            resize: vertical;
+          }
+
+          .fileUpload {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            .uploadButton {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 8px 16px;
+              background-color: themed("bgSoft");
+              border-radius: 5px;
+              cursor: pointer;
+              color: themed("textColor");
+
+              &:hover {
+                background-color: darken(themed("bgSoft"), 5%);
+              }
+
+              svg {
+                font-size: 24px;
+              }
+            }
+
+            .previewImage {
+              width: 100%;
+              max-height: 300px;
+              object-fit: contain;
+              border-radius: 5px;
+              border: 1px solid themed("border");
+            }
+          }
+
+          .editButtons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+
+            button {
+              padding: 5px 15px;
+              border: none;
+              border-radius: 3px;
+              cursor: pointer;
+              color: white;
+
+              &:first-child {
+                background-color: #5271ff;
+              }
+
+              &:last-child {
+                background-color: #f0544f;
+              }
+            }
+          }
+        }
+
+        img {
+          width: 100%;
+          max-height: 500px;
+          object-fit: cover;
+          margin-top: 20px;
+        }
+
+        p{
+          white-space: pre-wrap;
+        }
+      }
+
+      .info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          font-size: 14px;
+
+          .like {
+            color: themed("textColorSoft");
+            &:hover {
+              color: #f0544f;
+            }
+          }
+
+          .liked {
+            color: #f0544f;
+            animation: likeAnimation 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes likeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
