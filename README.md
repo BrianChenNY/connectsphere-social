@@ -19,6 +19,12 @@ Open /service/connect.js and update the database configuration (host, username, 
 
 Incorrect configuration may result in database connection failures.
 
+### Database Schema
+
+Below is the entity-relationship diagram of the database structure:
+
+![Database Schema](./er.png)
+
 ### Install Dependencies
 
 Since both the frontend and backend rely on Node.js, install dependencies for both:
